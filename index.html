@@ -16,16 +16,25 @@
   body{margin:0;}
   input::placeholder{color:#9DA0A6;}
   #calc-title{font-size:56px;}
-  @media (max-width:1024px){#calc-title{font-size:40px;}}
-  @media (max-width:600px){#calc-title{font-size:30px;}}
+  @media (max-width:1024px){#calc-title{font-size:40px !important;}}
+  @media (max-width:600px){#calc-title{font-size:30px !important;}}
   @media (max-width:600px){#calc-root{padding-left:20px;padding-right:20px;}}
   @media (max-width:600px){#calc-features{grid-template-columns:1fr 1fr !important;}}
+  @media (max-width:600px){#calc-card{padding:20px !important;}}
+  @media (max-width:600px){#calc-form{padding:8px !important;}}
+  @media (max-width:600px){#calc-feature-mobile{display:flex !important;}}
+  @media (max-width:600px){
+    #vol-grid{display:grid !important;grid-template-columns:repeat(6,1fr);}
+    #vol-grid > button{max-width:none !important;min-width:0 !important;}
+    #vol-grid > button:nth-child(-n+3){grid-column:span 2;}
+    #vol-grid > button:nth-child(n+4){grid-column:span 3;}
+  }
 </style>
 </helmet>
 
 <div id="calc-root" style="min-height:100dvh;width:100%;background:#EAECEF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:36px 24px;font-family:'Geist',sans-serif;">
 
-  <div style="width:100%;max-width:1280px;background:#FFFFFF;border-radius:4px;box-shadow:0 1px 1px rgba(43,45,84,.06), 0 6px 16px rgba(43,45,84,.07), 0 20px 44px rgba(43,45,84,.08);padding:40px;display:flex;flex-wrap:wrap;gap:36px 56px;">
+  <div id="calc-card" style="width:100%;max-width:1280px;background:#FFFFFF;border-radius:4px;box-shadow:0 1px 1px rgba(43,45,84,.06), 0 6px 16px rgba(43,45,84,.07), 0 20px 44px rgba(43,45,84,.08);padding:40px;display:flex;flex-wrap:wrap;gap:36px 56px;">
 
     <!-- LEFT: configurator -->
     <div style="flex:1 1 560px;min-width:300px;display:flex;flex-direction:column;gap:24px;">
@@ -43,7 +52,11 @@
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
             <span style="color:#F85281;display:flex;flex:0 0 auto;"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path><path d="M12 13v8"></path></svg></span>
-            <div><div style="font-family:'Geist',sans-serif;font-size:13px;font-weight:500;line-height:1.2;color:#15171C;">Доставка по Україні</div><div style="font-family:'Geist',sans-serif;font-size:12px;line-height:1.2;color:#8A8C92;">протягом 2 днів</div></div>
+            <div><div style="font-family:'Geist',sans-serif;font-size:13px;font-weight:500;line-height:1.2;color:#15171C;">Доставка по Україні</div><div style="font-family:'Geist',sans-serif;font-size:12px;line-height:1.2;color:#8A8C92;">до 2 днів</div></div>
+          </div>
+          <div id="calc-feature-mobile" style="display:none;align-items:center;gap:10px;">
+            <span style="color:#F85281;display:flex;flex:0 0 auto;"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7S9.5 3 7.5 3 5 6 7 7h5zM12 7s2.5-4 4.5-4S19 6 17 7h-5z"></path></svg></span>
+            <div><div style="font-family:'Geist',sans-serif;font-size:13px;font-weight:500;line-height:1.2;color:#15171C;">Відправляємо зразки</div><div style="font-family:'Geist',sans-serif;font-size:12px;line-height:1.2;color:#8A8C92;">безкоштовно</div></div>
           </div>
         </div>
       </div>
@@ -71,7 +84,7 @@
       <!-- Step 2: volume -->
       <div style="display:flex;flex-direction:column;gap:12px;">
         <span style="font-family:'Geist',sans-serif;font-size:16px;font-weight:500;letter-spacing:-0.01em;color:#15171C;">2. Оберіть об'єм</span>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div id="vol-grid" style="display:flex;gap:10px;flex-wrap:wrap;">
           <sc-for list="{{ volumes }}" as="v" hint-placeholder-count="5">
             <button onClick="{{ v.onSelect }}" style="{{ v.tileStyle }}">
               <span style="{{ v.radioStyle }}"><span style="{{ v.radioDotStyle }}"></span></span>
@@ -106,7 +119,7 @@
     </div>
 
     <!-- RIGHT: contact form -->
-    <div style="flex:1 1 340px;min-width:280px;align-self:flex-start;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;background:#FFFFFF;border-radius:4px;padding:28px;box-shadow:0 1px 2px rgba(43,45,84,.06), 0 8px 24px rgba(43,45,84,.08);">
+    <div id="calc-form" style="flex:1 1 340px;min-width:280px;align-self:flex-start;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;background:#FFFFFF;border-radius:4px;padding:28px;box-shadow:0 1px 2px rgba(43,45,84,.06), 0 8px 24px rgba(43,45,84,.08);">
 
       <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:18px;">
@@ -148,7 +161,7 @@
             </div>
           </div>
 
-          <button onClick="{{ submit }}" style="{{ btnStyle }}" style-hover="{{ btnHoverStyle }}">Отримати комерційну пропозицію</button>
+          <button onClick="{{ submit }}" style="{{ btnStyle }}" style-hover="{{ btnHoverStyle }}">Отримати пропозицію</button>
 
           <div style="display:flex;align-items:center;gap:9px;">
             <span style="color:#B8BAC0;display:flex;">
@@ -360,7 +373,7 @@ class Component extends DCLogic {
       },
       sent:s.sent, notSent:!s.sent,
       showFeatures: this.props.showFeatures!==false,
-      readyDate: (()=>{ const d=new Date(); d.setDate(d.getDate()+21); return d.toLocaleDateString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric'}); })(),
+      readyDate: (()=>{ const d=new Date(); d.setDate(d.getDate()+18); return d.toLocaleDateString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric'}); })(),
     };
   }
 }
